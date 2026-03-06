@@ -2,6 +2,20 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [1.5.0] - 2026-03-06
+
+### Added
+
+- `scripts/append-self-audit-log.sh` 추가
+- `scripts/sync-to-codex.sh` 추가
+- `scripts/release-sync.sh` 추가
+
+### Changed
+
+- standalone 레포를 source of truth로 고정하고 `.codex` 복사본을 스크립트로 동기화하는 흐름 추가
+- `README.md`에 릴리즈/동기화 운영 절차와 `.codex` 동기화 경로 문서화
+- `SKILL.md` version을 `1.5.0`으로 업데이트
+
 ## [1.4.1] - 2026-03-06
 
 ### Added

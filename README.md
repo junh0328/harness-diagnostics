@@ -71,7 +71,9 @@ Audit: /path/to/project
 ```bash
 bash scripts/self-audit.sh
 bash scripts/update-self-meta.sh
+bash scripts/append-self-audit-log.sh "수동 점검" "PASS" "standalone self-audit"
 node scripts/calculate-score.js references/score-template.json
+bash scripts/release-sync.sh
 ```
 
 ## 버전 관리
@@ -84,17 +86,38 @@ node scripts/calculate-score.js references/score-template.json
 - 사람이 읽는 변경 이력은 `CHANGELOG.md`에 기록합니다.
 - 릴리즈 지점은 Git tag(`vX.Y.Z`)로 남깁니다.
 - 관련 메타 문서가 있으면 버전 변경 후 함께 동기화합니다.
+- standalone 레포를 source of truth로 두고, `.codex` 복사본은 스크립트로 동기화합니다.
 
 권장 흐름:
 
 1. 기능/문서/스크립트 변경
 2. `SKILL.md` version 업데이트
 3. `CHANGELOG.md` 갱신
-4. 메타 동기화 및 self-audit 실행
+4. `bash scripts/release-sync.sh` 실행
 5. 커밋
 6. `git tag vX.Y.Z`
 7. 원격 push
 
+`release-sync.sh`는 아래 작업을 한 번에 수행합니다.
+
+- standalone 레포의 메타 갱신
+- standalone self-audit 실행
+- self-audit 로그 기록
+- `.codex` 경로로 스킬 런타임 파일(`SKILL.md`, `examples/`, `references/`, `scripts/`, `logs/`) 동기화
+- `.codex` 복사본 메타 갱신 및 self-audit 실행
+
 ## Source of Truth
 
 이 레포는 `harness-diagnostics` 스킬의 독립 소스 저장소로 사용합니다. 다른 프로젝트나 로컬 skill 디렉토리에 복사된 버전이 있더라도, 기준은 이 레포를 우선합니다.
+
+기본 `.codex` 동기화 대상:
+
+```text
+$HOME/.codex/skills/harness-diagnostics
+```
+
+필요하면 아래처럼 다른 경로를 명시할 수 있습니다.
+
+```bash
+bash scripts/release-sync.sh /custom/path/to/harness-diagnostics
+```
