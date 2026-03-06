@@ -50,6 +50,34 @@
 
 Codex에서 이 스킬을 사용할 때는 `SKILL.md`를 기준으로 모드를 선택해 실행합니다.
 
+## 설치 및 동기화
+
+standalone 레포를 기준으로 사용할 때는 아래 순서를 권장합니다.
+
+1. 레포 클론
+
+```bash
+git clone https://github.com/junh0328/harness-diagnostics.git
+cd harness-diagnostics
+```
+
+2. `.codex` 스킬 디렉토리로 동기화
+
+```bash
+bash scripts/release-sync.sh /Users/junhee/.codex/skills/harness-diagnostics
+```
+
+3. Codex에서 스킬 실행 및 확인
+
+```text
+$harness-diagnostics self
+```
+
+주의:
+
+- 위 흐름에서는 standalone 레포가 source of truth입니다.
+- `.codex` 쪽은 직접 수정하지 않고, 항상 `release-sync.sh`로 갱신하는 것을 권장합니다.
+
 예시:
 
 ```text
