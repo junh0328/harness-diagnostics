@@ -2,6 +2,17 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [1.7.1] - 2026-03-06
+
+### 추가됨
+
+- `self-audit` 스크립트가 `rg` 미설치 환경에서도 `grep` fallback으로 동작하도록 보강
+
+### 변경됨
+
+- `scripts/self-audit-structure.sh`와 `scripts/self-audit-runtime.sh`가 GitHub Actions 기본 환경에서도 동일하게 통과하도록 수정
+- `SKILL.md` version을 `1.7.1`로 업데이트
+
 ## [1.7.0] - 2026-03-06
 
 ### 추가됨

@@ -2,6 +2,9 @@
 
 | 날짜       | 버전   | 실행 유형  | 트리거                                            | 결과         | 점수 | 등급 | 메모                                                                                               |
 | ---------- | ------ | ---------- | ------------------------------------------------- | ------------ | ---- | ---- | -------------------------------------------------------------------------------------------------- |
+| 2026-03-06 | v1.7.1 | skill-self | 직접 Self 실행 | PASS | 97 | L5 | 1.7.1 fallback 수정이 release-sync 이후 runtime copy에서도 통과 |
+| 2026-03-06 | v1.7.1 | script | Release sync to .codex | PASS | - | - | Synchronized to /Users/junhee/.codex/skills/harness-diagnostics |
+| 2026-03-06 | v1.7.1 | skill-self | 직접 Self 실행 | PASS | 97 | L5 | 1.7.1: self-audit scripts에 rg 미설치 환경 fallback 추가 |
 | 2026-03-06 | v1.7.0 | skill-self | 직접 Self 실행 | PASS | 96 | L5 | 한글화된 Markdown과 로그 파서 수정이 release-sync 이후 runtime copy에서도 통과 |
 | 2026-03-06 | v1.7.0 | script | Release sync to .codex | PASS | - | - | Synchronized to /Users/junhee/.codex/skills/harness-diagnostics |
 | 2026-03-06 | v1.7.0 | skill-self | 직접 Self 실행 | PASS | 96 | L5 | 영문 Markdown 템플릿/샘플/워크플로우 섹션명을 한글로 정리하고 로그 헤더 파서를 보강 |
