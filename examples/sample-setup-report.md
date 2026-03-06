@@ -5,7 +5,7 @@
 
 ---
 
-# Harness Diagnostics Report
+# 하니스 진단 리포트
 
 - **진단 대상**: Acme Dashboard
 - **모드**: Setup
@@ -42,16 +42,16 @@
 
 | 항목 | 내용 | 분류 |
 |------|------|------|
-| 제품/서비스 목적 | B2B 운영 대시보드 | User requirement |
-| 기술 스택 제약 | Next.js App Router, TypeScript strict, pnpm | User requirement |
-| 팀 운영 규칙 | PR 필수, main 직접 push 금지 | User requirement |
-| 품질 기준 | lint, typecheck, test, CI 필수 | User requirement |
-| 문서 요구사항 | AGENTS.md, docs/adr, docs/guides 필요 | User requirement |
-| 테스트/CI 요구사항 | Vitest + Playwright, GitHub Actions | User requirement |
+| 제품/서비스 목적 | B2B 운영 대시보드 | 사용자 요구사항 |
+| 기술 스택 제약 | Next.js App Router, TypeScript strict, pnpm | 사용자 요구사항 |
+| 팀 운영 규칙 | PR 필수, main 직접 push 금지 | 사용자 요구사항 |
+| 품질 기준 | lint, typecheck, test, CI 필수 | 사용자 요구사항 |
+| 문서 요구사항 | AGENTS.md, docs/adr, docs/guides 필요 | 사용자 요구사항 |
+| 테스트/CI 요구사항 | Vitest + Playwright, GitHub Actions | 사용자 요구사항 |
 
-- **Repo evidence**: `package.json`, `tsconfig.json`, `README.md`, `.eslintrc*` 또는 Next.js 기본 lint 설정
-- **User requirement**: "TypeScript strict, PR 필수, Vitest + Playwright, AGENTS.md와 docs 필요"
-- **Inference**: 기능 구현 전에 에이전트 진입점과 최소 품질 게이트를 먼저 세우는 것이 적절함
+- **레포 근거**: `package.json`, `tsconfig.json`, `README.md`, `.eslintrc*` 또는 Next.js 기본 lint 설정
+- **사용자 요구사항**: "TypeScript strict, PR 필수, Vitest + Playwright, AGENTS.md와 docs 필요"
+- **추론**: 기능 구현 전에 에이전트 진입점과 최소 품질 게이트를 먼저 세우는 것이 적절함
 
 ---
 
@@ -121,15 +121,15 @@
 
 | 섹션 | 포함 내용 | 출처 |
 |------|-----------|------|
-| 프로젝트 개요 | B2B 운영 대시보드, 핵심 사용자 | User requirement |
-| 빌드/실행 명령어 | `pnpm install`, `pnpm dev`, `pnpm lint`, `pnpm test` | Repo evidence + Inference |
-| 디렉토리 구조 | `app/`, `components/`, `lib/`, `features/` 목표 구조 | Repo evidence + Inference |
-| 코딩 컨벤션 | Server Component 우선, strict TS, feature 단위 분리 | User requirement + Inference |
-| 운영 규칙 | PR 필수, main 직접 push 금지, 문서 동시 갱신 | User requirement |
+| 프로젝트 개요 | B2B 운영 대시보드, 핵심 사용자 | 사용자 요구사항 |
+| 빌드/실행 명령어 | `pnpm install`, `pnpm dev`, `pnpm lint`, `pnpm test` | 레포 근거 + 추론 |
+| 디렉토리 구조 | `app/`, `components/`, `lib/`, `features/` 목표 구조 | 레포 근거 + 추론 |
+| 코딩 컨벤션 | Server Component 우선, strict TS, feature 단위 분리 | 사용자 요구사항 + 추론 |
+| 운영 규칙 | PR 필수, main 직접 push 금지, 문서 동시 갱신 | 사용자 요구사항 |
 
 ---
 
-## 부록: Self-Assessment
+## 부록: 자체 점검
 
 이 진단 리포트 자체의 품질:
 - [x] 모든 원칙에 대해 근거가 제시되었는가?

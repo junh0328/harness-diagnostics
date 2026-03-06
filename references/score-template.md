@@ -1,8 +1,8 @@
-# Score Calculation Template (Audit)
+# 점수 계산 템플릿 (Audit)
 
 > `references/maturity-framework.md`의 산식을 빠르게 적용하기 위한 계산 템플릿.
 
-## 1) Principle Scores (0-10)
+## 1) 원칙별 점수 (0-10)
 
 | Principle | Score |
 |-----------|-------|
@@ -19,7 +19,7 @@
 | P11 | |
 | P12 | |
 
-## 2) Dimension Scores
+## 2) 차원 점수
 
 ```
 DimA = (P1 + P2 + P5 + P12) / 4
@@ -28,13 +28,13 @@ DimC = (P6 + P9 + P11) / 3
 DimD = (P7 + P8) / 2
 ```
 
-## 3) Weighted Total
+## 3) 가중 합계
 
 ```
 Total = (DimA*0.3 + DimB*0.3 + DimC*0.2 + DimD*0.2) * 10
 ```
 
-## 4) Grade Mapping
+## 4) 등급 매핑
 
 | Grade | Range |
 |-------|-------|

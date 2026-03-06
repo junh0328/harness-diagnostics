@@ -9,6 +9,7 @@
 
 - [ ] `SKILL.md`가 skill 루트 디렉토리에 존재하는가
 - [ ] `SKILL.md`가 유일한 진입점(entry point)으로 기능하는가
+- [ ] 레포 운영용 `AGENTS.md`가 존재하는가
 - [ ] `references/` 디렉토리가 존재하고, 상세 참조 문서를 포함하는가
 - [ ] `examples/` 디렉토리가 존재하는가 (필요한 경우)
 - [ ] 파일명이 kebab-case 규칙을 따르는가 (예: `skill-checklist.md`)
@@ -56,6 +57,7 @@
 - [ ] 출력 템플릿 또는 예시가 references에 포함되어 있는가
 - [ ] 일관된 포맷 규칙이 있는가 (Markdown 테이블, 점수 표기, 등급 표시)
 - [ ] 출력 구조가 사용자와 에이전트 모두에게 파싱 가능한가
+- [ ] `수행한 검증` 같은 검증 결과 섹션이 출력 계약에 포함되는가
 
 ---
 
@@ -77,27 +79,40 @@
 - [ ] version 필드를 통해 변경 이력을 추적할 수 있는가
 - [ ] 품질 기준(metrics)이 정의되어 있는가
 - [ ] 이 체크리스트 자체가 스킬 품질의 기준 문서로 기능하는가
+- [ ] 구조 검증과 런타임 검증이 별도 스크립트로 분리되어 있는가
+- [ ] self 결과가 `logs/self-audit-log.md`에 점수와 변경 메모로 기록되는가
 
 ---
 
-## Meta: harness-diagnostics 자체 진단
+## 8. 운영 Guardrail — 5항목
+
+- [ ] CI workflow가 self-audit/doc-lint를 실행하는가
+- [ ] PR 템플릿이 self 점수와 검증 명령을 요구하는가
+- [ ] Issue 템플릿이 evidence와 proposed change를 요구하는가
+- [ ] source of truth와 sync 정책이 문서화되어 있는가
+- [ ] maintenance/GC 스캔 경로가 존재하는가
+
+---
+
+## 메타: harness-diagnostics 자체 진단
 
 이 체크리스트를 `harness-diagnostics` skill에 적용한 결과.
-진단 시점: v1.6.0
+진단 시점: v1.7.0
 
 ### 결과 요약
 
 | 카테고리 | 점수 | 비고 |
 |----------|------|------|
-| 파일 구조 검증 | 7/7 | 구조 완성 |
+| 파일 구조 검증 | 8/8 | AGENTS 포함 |
 | SKILL.md 품질 | 6/6 | 120줄 기준 충족 |
 | Frontmatter 품질 | 6/6 | 우수 |
 | 본문 구조 | 6/6 | references 파일 모두 존재 |
-| 출력 형식 정의 | 4/4 | report-template.md 포함 |
+| 출력 형식 정의 | 5/5 | Verification 섹션 포함 |
 | References 품질 | 6/6 | 모든 파일 완성 |
-| 자체 평가 메커니즘 | 5/5 | Self 진단 경로 존재 |
+| 자체 평가 메커니즘 | 7/7 | 구조/런타임 분리 및 self log 운영 |
+| 운영 Guardrail | 5/5 | CI, 템플릿, GC 스캔 포함 |
 
-**총점**: 40/40 (100%)
+**총점**: 43/43 (100%)
 
 ---
 

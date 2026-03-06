@@ -3,6 +3,7 @@
 `harness-diagnostics`는 코드베이스와 Codex skill의 에이전트 친화도(harness)를 진단하고, 개선 방향을 제안하기 위한 독립 스킬 레포지토리입니다.
 
 이 레포는 사람을 위한 안내 문서, 예시, 진단 기준, 보조 스크립트를 함께 제공합니다. 실제 에이전트 진입점은 [SKILL.md](/Users/junhee/playground/harness-diagnostics/SKILL.md)입니다.
+레포를 수정하는 에이전트의 운영 진입점은 [AGENTS.md](/Users/junhee/playground/harness-diagnostics/AGENTS.md)입니다.
 
 ## 이 레포의 목적
 
@@ -49,6 +50,18 @@
 ## 사용 방식
 
 Codex에서 이 스킬을 사용할 때는 `SKILL.md`를 기준으로 모드를 선택해 실행합니다.
+
+## 검증 워크플로우
+
+구조 검증, 런타임 검증, self 로그 운영 규칙은 [references/verification-workflow.md](/Users/junhee/playground/harness-diagnostics/references/verification-workflow.md)에 고정합니다.
+
+핵심 명령:
+
+```bash
+bash scripts/self-audit.sh
+bash scripts/maintenance-scan.sh
+node scripts/calculate-score.js references/score-template.json
+```
 
 ## 설치 및 동기화
 
@@ -98,6 +111,8 @@ Audit: /path/to/project
 
 ```bash
 bash scripts/self-audit.sh
+bash scripts/doc-lint.sh
+bash scripts/maintenance-scan.sh
 bash scripts/update-self-meta.sh
 bash scripts/append-self-audit-log.sh "수동 점검" "PASS" "standalone self-audit"
 RUN_TYPE=skill-self SCORE=91 GRADE=L5 bash scripts/append-self-audit-log.sh "직접 Self 실행" "PASS" "standalone repo 기준 Self 평가"
@@ -106,7 +121,7 @@ node scripts/calculate-score.js references/score-template.json
 bash scripts/release-sync.sh
 ```
 
-## Self Audit Log 운영
+## Self Audit 기록 운영
 
 `logs/self-audit-log.md`는 두 종류의 실행 이력을 구분해서 기록합니다.
 
@@ -152,13 +167,22 @@ bash scripts/log-skill-self.sh 72 L4 "개선 항목 포함 Self 평가" WARN
 
 `release-sync.sh`는 아래 작업을 한 번에 수행합니다.
 
-- standalone 레포의 메타 갱신
+- standalone 레포의 문서 메타 갱신
 - standalone self-audit 실행
 - self-audit 로그 기록
-- `.codex` 경로로 스킬 런타임 파일(`SKILL.md`, `examples/`, `references/`, `scripts/`, `logs/`) 동기화
+- `.codex` 경로로 관리 대상 파일(`.github/`, `AGENTS.md`, `README.md`, `CHANGELOG.md`, `SKILL.md`, `examples/`, `references/`, `scripts/`, `logs/`) 동기화
 - `.codex` 복사본 메타 갱신 및 self-audit 실행
 
-## Source of Truth
+## GitHub 운영 템플릿
+
+이 레포는 GitHub workspace 운영을 위해 아래 템플릿과 workflow를 포함합니다.
+
+- `.github/ISSUE_TEMPLATE/harness-improvement.yml`
+- `.github/pull_request_template.md`
+- `.github/workflows/self-audit.yml`
+- `.github/workflows/docs-consistency.yml`
+
+## 기준 저장소
 
 이 레포는 `harness-diagnostics` 스킬의 독립 소스 저장소로 사용합니다. 다른 프로젝트나 로컬 skill 디렉토리에 복사된 버전이 있더라도, 기준은 이 레포를 우선합니다.
 
