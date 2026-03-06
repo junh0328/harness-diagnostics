@@ -44,7 +44,7 @@
 - `scripts/`
   self-audit, 메타 동기화, 점수 계산 스크립트
 - `logs/`
-  self-audit 기록
+  self-audit 기록과 직접 Self 실행 요약
 
 ## 사용 방식
 
@@ -100,8 +100,32 @@ Audit: /path/to/project
 bash scripts/self-audit.sh
 bash scripts/update-self-meta.sh
 bash scripts/append-self-audit-log.sh "수동 점검" "PASS" "standalone self-audit"
+RUN_TYPE=skill-self SCORE=91 GRADE=L5 bash scripts/append-self-audit-log.sh "직접 Self 실행" "PASS" "standalone repo 기준 Self 평가"
+bash scripts/log-skill-self.sh 91 L5 "standalone repo 기준 Self 평가"
 node scripts/calculate-score.js references/score-template.json
 bash scripts/release-sync.sh
+```
+
+## Self Audit Log 운영
+
+`logs/self-audit-log.md`는 두 종류의 실행 이력을 구분해서 기록합니다.
+
+- `script`
+  `self-audit.sh`, `release-sync.sh`처럼 구조와 동기화 상태를 검증하는 자동 스크립트 실행
+- `skill-self`
+  Codex에서 직접 `$harness-diagnostics self`를 실행한 뒤 남기는 요약 결과
+
+직접 Self 실행 결과는 전체 리포트를 복사하지 않고, 점수와 등급만 요약해서 남기는 방식을 권장합니다.
+
+예:
+
+```text
+$harness-diagnostics self
+```
+
+```bash
+bash scripts/log-skill-self.sh 91 L5 "standalone repo 기준 Self 평가 완료"
+bash scripts/log-skill-self.sh 72 L4 "개선 항목 포함 Self 평가" WARN
 ```
 
 ## 버전 관리

@@ -3,7 +3,7 @@ name: harness-diagnostics
 description: |
   코드베이스와 Codex skill의 에이전트 친화도(harness)를 12개 원칙으로 진단하고 개선안을 제안합니다.
   사용 상황: 신규 환경 구축(Setup), 현 상태 점검(Audit), drift 정리(Maintenance), skill 품질 검사(Self).
-version: 1.5.0
+version: 1.6.0
 ---
 
 # Harness Diagnostics
@@ -87,6 +87,7 @@ P6 Layered, P7 Garbage Collection, P8 Observability, P9 Knowledge, P10 Reproduci
 - Self 진단 스모크 테스트: `scripts/self-audit.sh`
 - Self Meta 동기화: `scripts/update-self-meta.sh`
 - Self Audit 로그 기록: `scripts/append-self-audit-log.sh`
+- Skill Self 실행 요약 기록: `scripts/log-skill-self.sh`
 - 점수 계산 스크립트: `scripts/calculate-score.js`
 - `.codex` 동기화 릴리즈: `scripts/release-sync.sh`
 - 점수 계산 MD 템플릿: `references/score-template.md`

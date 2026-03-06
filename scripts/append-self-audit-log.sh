@@ -8,14 +8,17 @@ LOG_FILE="$ROOT_DIR/logs/self-audit-log.md"
 TRIGGER="${1:-수동 실행}"
 RESULT="${2:-PASS}"
 NOTE="${3:-}"
+RUN_TYPE="${4:-${RUN_TYPE:-script}}"
+SCORE="${5:-${SCORE:--}}"
+GRADE="${6:-${GRADE:--}}"
 DATE_VALUE="${DATE_VALUE:-$(date +%F)}"
 VERSION="$(awk '/^version:/ {print $2; exit}' "$SKILL_FILE")"
 
-DATE_VALUE="$DATE_VALUE" VERSION="$VERSION" TRIGGER="$TRIGGER" RESULT="$RESULT" NOTE="$NOTE" LOG_FILE="$LOG_FILE" node <<'EOF'
+DATE_VALUE="$DATE_VALUE" VERSION="$VERSION" RUN_TYPE="$RUN_TYPE" TRIGGER="$TRIGGER" RESULT="$RESULT" SCORE="$SCORE" GRADE="$GRADE" NOTE="$NOTE" LOG_FILE="$LOG_FILE" node <<'EOF'
 const fs = require("fs");
 
 const file = process.env.LOG_FILE;
-const row = `| ${process.env.DATE_VALUE} | v${process.env.VERSION} | ${process.env.TRIGGER} | ${process.env.RESULT} | ${process.env.NOTE} |`;
+const row = `| ${process.env.DATE_VALUE} | v${process.env.VERSION} | ${process.env.RUN_TYPE} | ${process.env.TRIGGER} | ${process.env.RESULT} | ${process.env.SCORE} | ${process.env.GRADE} | ${process.env.NOTE} |`;
 
 const text = fs.readFileSync(file, "utf8");
 const lines = text.split("\n");
@@ -33,4 +36,5 @@ if (!existing) {
 EOF
 
 echo "[append-self-audit-log] version: $VERSION"
+echo "[append-self-audit-log] run_type: $RUN_TYPE"
 echo "[append-self-audit-log] trigger: $TRIGGER"

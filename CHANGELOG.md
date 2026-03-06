@@ -2,6 +2,19 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [1.6.0] - 2026-03-06
+
+### Added
+
+- `scripts/log-skill-self.sh` 추가
+- `logs/self-audit-log.md`에 `Run Type`, `Score`, `Grade` 컬럼 추가
+
+### Changed
+
+- `scripts/append-self-audit-log.sh`가 `script`와 `skill-self` 실행을 모두 기록할 수 있도록 확장
+- `README.md`에 직접 `$harness-diagnostics self` 실행 결과를 로그에 남기는 절차 추가
+- `SKILL.md` version을 `1.6.0`으로 업데이트
+
 ## [1.5.0] - 2026-03-06
 
 ### Added
