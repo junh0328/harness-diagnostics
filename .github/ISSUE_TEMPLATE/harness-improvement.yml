@@ -1,0 +1,38 @@
+name: Harness improvement
+description: Track a concrete harness gap or alignment task for this skill.
+title: "[Harness] "
+labels:
+  - harness
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What harness gap or drift was observed?
+      placeholder: Describe the missing guardrail, stale document, or weak verification loop.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Which files, logs, or behaviors show the issue?
+      placeholder: Include file paths, command output, or workflow failures.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What concrete change should be made?
+      placeholder: Scripts, docs, templates, CI, or release flow updates.
+    validations:
+      required: true
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification expectation
+      options:
+        - label: Requires `bash scripts/self-audit.sh`
+        - label: Requires `bash scripts/maintenance-scan.sh`
+        - label: Requires `bash scripts/release-sync.sh`

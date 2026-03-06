@@ -1,0 +1,20 @@
+name: docs-consistency
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs-consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run doc lint
+        run: bash scripts/doc-lint.sh
+      - name: Validate score calculator
+        run: node scripts/calculate-score.js references/score-template.json >/tmp/score.json

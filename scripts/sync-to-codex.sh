@@ -13,6 +13,10 @@ const path = require("path");
 const root = process.env.ROOT_DIR;
 const target = process.env.TARGET_DIR;
 const managedPaths = [
+  ".github",
+  "AGENTS.md",
+  "README.md",
+  "CHANGELOG.md",
   "SKILL.md",
   "examples",
   "references",

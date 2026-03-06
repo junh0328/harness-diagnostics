@@ -22,7 +22,7 @@ const row = `| ${process.env.DATE_VALUE} | v${process.env.VERSION} | ${process.e
 
 const text = fs.readFileSync(file, "utf8");
 const lines = text.split("\n");
-const insertAt = lines.findIndex((line) => line.startsWith("|------|"));
+const insertAt = lines.findIndex((line) => /^\|[-| ]+\|$/.test(line.trim()));
 
 if (insertAt === -1) {
   throw new Error("self-audit log table header not found");
