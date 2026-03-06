@@ -119,6 +119,15 @@ app/ → components/ → hooks/ → lib/ → types/
 - [개발 가이드](docs/guides/development.md)
 ```
 
+## 렌더링용 링크 예시
+
+위 코드블록 안의 링크는 AGENTS.md 예시 원문을 보여주기 위한 것이므로 GitHub에서 클릭 가능한 링크로 렌더링되지 않는다.
+실제 표시 형태는 아래와 같다.
+
+- [아키텍처 결정 기록](docs/adr/)
+- [API 문서](docs/api/)
+- [개발 가이드](docs/guides/development.md)
+
 ---
 
 ## 이 예시가 반영하는 원칙
