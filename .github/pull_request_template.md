@@ -10,6 +10,7 @@
 
 ## 검증
 
+- [ ] `bash scripts/check-node-version.sh`
 - [ ] `bash scripts/self-audit.sh`
 - [ ] `bash scripts/maintenance-scan.sh`
 - [ ] `bash scripts/doc-lint.sh`

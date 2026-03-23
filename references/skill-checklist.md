@@ -84,20 +84,22 @@
 
 ---
 
-## 8. 운영 Guardrail — 5항목
+## 8. 운영 Guardrail — 7항목
 
 - [ ] CI workflow가 self-audit/doc-lint를 실행하는가
 - [ ] PR 템플릿이 self 점수와 검증 명령을 요구하는가
 - [ ] Issue 템플릿이 evidence와 proposed change를 요구하는가
 - [ ] source of truth와 sync 정책이 문서화되어 있는가
 - [ ] maintenance/GC 스캔 경로가 존재하는가
+- [ ] `.nvmrc` 같은 런타임 버전 pin이 존재하고 CI와 일치하는가
+- [ ] local pre-commit hook 경로가 존재하고 설치 경로가 문서화되어 있는가
 
 ---
 
 ## 메타: harness-diagnostics 자체 진단
 
 이 체크리스트를 `harness-diagnostics` skill에 적용한 결과.
-진단 시점: v1.7.3
+진단 시점: v1.8.0
 
 ### 결과 요약
 
@@ -110,9 +112,9 @@
 | 출력 형식 정의 | 5/5 | Verification 섹션 포함 |
 | References 품질 | 6/6 | 모든 파일 완성 |
 | 자체 평가 메커니즘 | 7/7 | 구조/런타임 분리 및 self log 운영 |
-| 운영 Guardrail | 5/5 | CI, 템플릿, GC 스캔 포함 |
+| 운영 Guardrail | 7/7 | CI, 템플릿, GC 스캔, 런타임 pin, local hook 포함 |
 
-**총점**: 49/49 (100%)
+**총점**: 51/51 (100%)
 
 ---
 
@@ -133,6 +135,6 @@
 
 ### 정기 점검
 
-- **분기 1회**: 전체 skill-checklist 자기 적용 (49항목)
+- **분기 1회**: 전체 skill-checklist 자기 적용 (51항목)
 - **사용 후**: 실제 진단 수행 후 워크플로우/템플릿의 현실 적합성 검토
 - **외부 변경 시**: Codex skill 시스템의 사양 변경 시 frontmatter/구조 호환성 확인

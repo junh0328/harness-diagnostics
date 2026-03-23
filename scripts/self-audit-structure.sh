@@ -26,7 +26,7 @@ else
 fi
 
 echo "[structure] required roots"
-for rel in AGENTS.md README.md CHANGELOG.md SKILL.md .github references examples scripts logs; do
+for rel in AGENTS.md README.md CHANGELOG.md SKILL.md .github .githooks .nvmrc references examples scripts logs; do
   if [ -e "$ROOT_DIR/$rel" ]; then
     echo "  PASS: $rel"
   else

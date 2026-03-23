@@ -6,6 +6,14 @@ EXIT_CODE=0
 
 echo "[self-audit] target: $ROOT_DIR"
 
+echo "[self-audit] runtime contract"
+if bash "$ROOT_DIR/scripts/check-node-version.sh"; then
+  echo "  PASS: node version audit"
+else
+  echo "  FAIL: node version audit"
+  EXIT_CODE=1
+fi
+
 echo "[self-audit] structure"
 if bash "$ROOT_DIR/scripts/self-audit-structure.sh"; then
   echo "  PASS: structure audit"

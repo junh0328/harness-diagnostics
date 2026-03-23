@@ -14,6 +14,8 @@ const root = process.env.ROOT_DIR;
 const target = process.env.TARGET_DIR;
 const managedPaths = [
   ".github",
+  ".githooks",
+  ".nvmrc",
   "AGENTS.md",
   "README.md",
   "CHANGELOG.md",

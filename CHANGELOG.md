@@ -2,6 +2,20 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [1.8.0] - 2026-03-23
+
+### 추가됨
+
+- `.nvmrc`, `.githooks/pre-commit`, `scripts/check-node-version.sh`, `scripts/install-hooks.sh`를 추가해 Node 20 런타임 계약과 local pre-commit guardrail을 도입
+
+### 변경됨
+
+- `scripts/self-audit.sh`가 구조/런타임 검사 전에 Node 버전 계약을 먼저 검증하도록 확장
+- `.github/workflows/*.yml`이 `.nvmrc`를 기준으로 Node 버전을 맞추도록 변경
+- `scripts/doc-lint.sh`, `scripts/maintenance-scan.sh`, `scripts/self-audit-structure.sh`, `scripts/sync-to-codex.sh`가 runtime pin과 hook 자산을 필수 구성으로 검사하도록 확장
+- `AGENTS.md`, `README.md`, `references/skill-checklist.md`를 런타임 pin과 local hook bootstrap 흐름에 맞게 갱신
+- `SKILL.md` version을 `1.8.0`으로 업데이트
+
 ## [1.7.3] - 2026-03-23
 
 ### 추가됨

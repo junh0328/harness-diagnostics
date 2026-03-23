@@ -2,6 +2,8 @@
 
 | 날짜       | 버전   | 실행 유형  | 트리거                                            | 결과         | 점수 | 등급 | 메모                                                                                               |
 | ---------- | ------ | ---------- | ------------------------------------------------- | ------------ | ---- | ---- | -------------------------------------------------------------------------------------------------- |
+| 2026-03-23 | v1.8.0 | skill-self | Self guardrail refresh | PASS | 87.3 | L5 | 1.8.0: Node 20 runtime pin과 local pre-commit guardrail 추가, release-sync 및 .codex self-audit 통과 |
+| 2026-03-23 | v1.8.0 | script | Release sync to .codex | PASS | - | - | Synchronized to /Users/junhee/.codex/skills/harness-diagnostics |
 | 2026-03-23 | v1.7.3 | skill-self | 직접 Self 실행 | PASS | 85.3 | L5 | 1.7.3: 링크 portable화, checklist self-consistency 추가, standalone/.codex release-sync self-audit 통과 |
 | 2026-03-23 | v1.7.3 | script | Release sync to .codex | PASS | - | - | Synchronized to /Users/junhee/.codex/skills/harness-diagnostics |
 | 2026-03-23 | v1.7.2 | script     | Audit 예시 갱신                                   | PASS         | -    | -    | 1.7.2: 실제 Audit 샘플 반영과 audit example coverage 검증 추가                                      |

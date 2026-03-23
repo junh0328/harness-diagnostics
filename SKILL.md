@@ -3,7 +3,7 @@ name: harness-diagnostics
 description: |
   코드베이스와 Codex skill의 에이전트 친화도(harness)를 12개 원칙으로 진단하고 개선안을 제안합니다.
   사용 상황: 신규 환경 구축(Setup), 현 상태 점검(Audit), drift 정리(Maintenance), skill 품질 검사(Self).
-version: 1.7.3
+version: 1.8.0
 ---
 
 # 하니스 진단
@@ -79,9 +79,11 @@ P6 Layered, P7 Garbage Collection, P8 Observability, P9 Knowledge, P10 Reproduci
 ## 자동화 도구
 
 - Self 진단 오케스트레이터: `scripts/self-audit.sh`
+- Runtime 버전 검사: `scripts/check-node-version.sh`
 - 구조 검증: `scripts/self-audit-structure.sh`
 - 런타임 검증: `scripts/self-audit-runtime.sh`
 - 문서/포인터 lint: `scripts/doc-lint.sh`
+- 로컬 Git hook 설치: `scripts/install-hooks.sh`
 - Maintenance/GC 스캔: `scripts/maintenance-scan.sh`
 - Self Meta 동기화: `scripts/update-self-meta.sh`
 - Self Audit 로그 기록: `scripts/append-self-audit-log.sh`
@@ -99,7 +101,7 @@ P6 Layered, P7 Garbage Collection, P8 Observability, P9 Knowledge, P10 Reproduci
 | `references/principles.md` | 12원칙 판단 기준 |
 | `references/maturity-framework.md` | 차원/가중치/점수 산식 |
 | `references/codebase-checklist.md` | 코드베이스 체크리스트 (84항목) |
-| `references/skill-checklist.md` | Skill 체크리스트 (49항목) |
+| `references/skill-checklist.md` | Skill 체크리스트 (51항목) |
 | `references/setup-workflow.md` | Setup 워크플로우 |
 | `references/audit-workflow.md` | Audit 워크플로우 |
 | `references/maintenance-workflow.md` | Maintenance 워크플로우 |

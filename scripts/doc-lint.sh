@@ -25,6 +25,8 @@ const changelog = read("CHANGELOG.md");
 const agents = read("AGENTS.md");
 const syncScript = read("scripts/sync-to-codex.sh");
 const prTemplate = read(".github/pull_request_template.md");
+const selfAuditWorkflow = read(".github/workflows/self-audit.yml");
+const docsConsistencyWorkflow = read(".github/workflows/docs-consistency.yml");
 const skillVersionMatch = skill.match(/^version:\s*([0-9.]+)$/m);
 
 assert(skillVersionMatch, "SKILL.md must declare a version");
@@ -33,14 +35,18 @@ const skillVersion = skillVersionMatch[1];
 
 const requiredFiles = [
   "AGENTS.md",
+  ".githooks/pre-commit",
+  ".nvmrc",
   ".github/workflows/self-audit.yml",
   ".github/workflows/docs-consistency.yml",
   ".github/ISSUE_TEMPLATE/harness-improvement.yml",
   ".github/pull_request_template.md",
   "references/verification-workflow.md",
+  "scripts/check-node-version.sh",
   "scripts/self-audit-structure.sh",
   "scripts/self-audit-runtime.sh",
   "scripts/doc-lint.sh",
+  "scripts/install-hooks.sh",
   "scripts/maintenance-scan.sh",
 ];
 
@@ -51,12 +57,20 @@ for (const rel of requiredFiles) {
 assert(skill.includes("references/verification-workflow.md"), "SKILL.md must reference verification-workflow.md");
 assert(readme.includes("verification-workflow.md"), "README.md must mention verification-workflow.md");
 assert(readme.includes("AGENTS.md"), "README.md must mention AGENTS.md");
+assert(readme.includes(".nvmrc"), "README.md must mention .nvmrc");
+assert(readme.includes("scripts/check-node-version.sh"), "README.md must mention scripts/check-node-version.sh");
+assert(readme.includes("scripts/install-hooks.sh"), "README.md must mention scripts/install-hooks.sh");
 assert(agents.includes("source of truth"), "AGENTS.md must state source of truth policy");
+assert(agents.includes(".nvmrc"), "AGENTS.md must mention .nvmrc");
+assert(agents.includes("scripts/install-hooks.sh"), "AGENTS.md must mention scripts/install-hooks.sh");
 assert(changelog.includes(`## [${skillVersion}]`), `CHANGELOG.md must include current version ${skillVersion}`);
 assert(prTemplate.includes("하니스 Self"), "PR template must include 하니스 Self section");
 assert(prTemplate.includes("logs/self-audit-log.md"), "PR template must mention self-audit log");
+assert(prTemplate.includes("scripts/check-node-version.sh"), "PR template must include scripts/check-node-version.sh");
+assert(selfAuditWorkflow.includes('node-version-file: ".nvmrc"'), "self-audit workflow must use .nvmrc");
+assert(docsConsistencyWorkflow.includes('node-version-file: ".nvmrc"'), "docs-consistency workflow must use .nvmrc");
 
-for (const rel of [".github", "AGENTS.md", "README.md", "CHANGELOG.md"]) {
+for (const rel of [".github", ".githooks", ".nvmrc", "AGENTS.md", "README.md", "CHANGELOG.md"]) {
   assert(syncScript.includes(`"${rel}"`), `sync-to-codex.sh must sync ${rel}`);
 }
 

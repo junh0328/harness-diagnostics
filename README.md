@@ -80,10 +80,12 @@ Codex에서 이 스킬을 사용할 때는 `SKILL.md`를 기준으로 모드를 
 ## 검증 워크플로우
 
 구조 검증, 런타임 검증, self 로그 운영 규칙은 [references/verification-workflow.md](./references/verification-workflow.md)에 고정합니다.
+실행 전에는 [`.nvmrc`](./.nvmrc) 기준 Node 20을 맞추고 `bash scripts/check-node-version.sh`로 런타임 계약을 먼저 확인합니다.
 
 핵심 명령:
 
 ```bash
+bash scripts/check-node-version.sh
 bash scripts/self-audit.sh
 bash scripts/maintenance-scan.sh
 node scripts/calculate-score.js references/score-template.json
@@ -100,13 +102,25 @@ git clone https://github.com/junh0328/harness-diagnostics.git
 cd harness-diagnostics
 ```
 
-2. `.codex` 스킬 디렉토리로 동기화
+2. `.nvmrc` 기준 Node 20 사용 확인
+
+```bash
+bash scripts/check-node-version.sh
+```
+
+3. local pre-commit 설치
+
+```bash
+bash scripts/install-hooks.sh
+```
+
+4. `.codex` 스킬 디렉토리로 동기화
 
 ```bash
 bash scripts/release-sync.sh /Users/junhee/.codex/skills/harness-diagnostics
 ```
 
-3. Codex에서 스킬 실행 및 확인
+5. Codex에서 스킬 실행 및 확인
 
 ```text
 $harness-diagnostics self
@@ -136,6 +150,7 @@ Audit: /path/to/project
 레포 루트에서 아래 명령으로 기본 검증을 실행할 수 있습니다.
 
 ```bash
+bash scripts/check-node-version.sh
 bash scripts/self-audit.sh
 bash scripts/doc-lint.sh
 bash scripts/maintenance-scan.sh
@@ -180,6 +195,7 @@ bash scripts/log-skill-self.sh 72 L4 "개선 항목 포함 Self 평가" WARN
 - 릴리즈 지점은 Git tag(`vX.Y.Z`)로 남깁니다.
 - 관련 메타 문서가 있으면 버전 변경 후 함께 동기화합니다.
 - standalone 레포를 source of truth로 두고, `.codex` 복사본은 스크립트로 동기화합니다.
+- 로컬 guardrail은 `.nvmrc`와 `.githooks/pre-commit`을 기준으로 유지합니다.
 
 권장 흐름:
 

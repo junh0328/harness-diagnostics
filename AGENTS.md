@@ -12,6 +12,7 @@
 ## 시작 순서
 
 - 스킬 런타임 계약은 [SKILL.md](./SKILL.md)에서 확인한다.
+- 로컬 작업 전 [`.nvmrc`](./.nvmrc) 기준으로 Node 20을 맞추고 `bash scripts/install-hooks.sh`로 local pre-commit을 설치한다.
 - 검증과 self 로그 운영 규칙은 [references/verification-workflow.md](./references/verification-workflow.md)에서 확인한다.
 - 릴리즈와 동기화 흐름은 [README.md](./README.md)의 설치/동기화 및 버전 관리 섹션을 따른다.
 
@@ -27,6 +28,7 @@
 레포 루트에서 아래 명령을 실행한다.
 
 ```bash
+bash scripts/check-node-version.sh
 bash scripts/self-audit.sh
 bash scripts/maintenance-scan.sh
 node scripts/calculate-score.js references/score-template.json
