@@ -2,6 +2,32 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [1.7.3] - 2026-03-23
+
+### 추가됨
+
+- `scripts/doc-lint.sh`에 README/AGENTS 로컬 링크 타깃 검증과 current version changelog 검증 추가
+- `scripts/self-audit-runtime.sh`에 skill checklist 카운트/메타 일관성 검증 추가
+
+### 변경됨
+
+- `AGENTS.md`와 `README.md`의 레포 내부 링크를 상대 경로로 교체해 standalone/.codex 복사본 모두에서 동일하게 동작하도록 수정
+- `README.md`에 Audit 결과물 축약 미리보기와 전체 예시 링크를 추가해 출력 형식을 더 빠르게 이해할 수 있도록 개선
+- `scripts/update-self-meta.sh`가 checklist 메타 요약의 버전, 카테고리 점수, 총점, 정기 점검 항목 수를 함께 동기화하도록 확장
+- `references/skill-checklist.md`의 섹션 항목 수 표기와 self-maintenance 기준을 실제 49항목 구조에 맞게 정리
+- `SKILL.md` version을 `1.7.3`로 업데이트
+
+## [1.7.2] - 2026-03-23
+
+### 추가됨
+
+- `examples/sample-report.md`를 실제 코드베이스 기반 Audit 예시로 교체하고 근거/위험 요소/수행한 검증 섹션을 포함
+
+### 변경됨
+
+- `scripts/self-audit-runtime.sh`가 Audit 예시의 핵심 섹션도 함께 검증하도록 확장
+- `SKILL.md` version을 `1.7.2`로 업데이트
+
 ## [1.7.1] - 2026-03-06
 
 ### 추가됨

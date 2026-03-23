@@ -2,8 +2,8 @@
 
 `harness-diagnostics`는 코드베이스와 Codex skill의 에이전트 친화도(harness)를 진단하고, 개선 방향을 제안하기 위한 독립 스킬 레포지토리입니다.
 
-이 레포는 사람을 위한 안내 문서, 예시, 진단 기준, 보조 스크립트를 함께 제공합니다. 실제 에이전트 진입점은 [SKILL.md](/Users/junhee/playground/harness-diagnostics/SKILL.md)입니다.
-레포를 수정하는 에이전트의 운영 진입점은 [AGENTS.md](/Users/junhee/playground/harness-diagnostics/AGENTS.md)입니다.
+이 레포는 사람을 위한 안내 문서, 예시, 진단 기준, 보조 스크립트를 함께 제공합니다. 실제 에이전트 진입점은 [SKILL.md](./SKILL.md)입니다.
+레포를 수정하는 에이전트의 운영 진입점은 [AGENTS.md](./AGENTS.md)입니다.
 
 ## 이 레포의 목적
 
@@ -51,9 +51,35 @@
 
 Codex에서 이 스킬을 사용할 때는 `SKILL.md`를 기준으로 모드를 선택해 실행합니다.
 
+## 결과물 미리보기
+
+이 스킬의 Audit 결과는 점수, 근거, 개선 항목을 함께 포함한 Markdown 리포트로 출력됩니다.
+
+```md
+# 하니스 진단 리포트
+
+- 진단 대상: specific repository
+- 모드: Audit
+- 날짜: 2026-03-23
+- 기술 스택: React 19, TypeScript 5, Vite 8
+- 진단 범위: 코드베이스
+
+## 요약
+강점은 ...
+약점은 ...
+
+## 1. 종합 평가
+종합 등급: L4 / 종합 점수: 77.3/100
+```
+
+전체 예시:
+
+- [Audit 예시](./examples/sample-report.md)
+- [Setup 예시](./examples/sample-setup-report.md)
+
 ## 검증 워크플로우
 
-구조 검증, 런타임 검증, self 로그 운영 규칙은 [references/verification-workflow.md](/Users/junhee/playground/harness-diagnostics/references/verification-workflow.md)에 고정합니다.
+구조 검증, 런타임 검증, self 로그 운영 규칙은 [references/verification-workflow.md](./references/verification-workflow.md)에 고정합니다.
 
 핵심 명령:
 
@@ -145,7 +171,7 @@ bash scripts/log-skill-self.sh 72 L4 "개선 항목 포함 Self 평가" WARN
 
 ## 버전 관리
 
-이 레포는 `package.json` 없이 버전을 관리합니다. 기준 버전은 [SKILL.md](/Users/junhee/playground/harness-diagnostics/SKILL.md)의 frontmatter `version` 필드입니다.
+이 레포는 `package.json` 없이 버전을 관리합니다. 기준 버전은 [SKILL.md](./SKILL.md)의 frontmatter `version` 필드입니다.
 
 운영 원칙:
 

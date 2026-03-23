@@ -1,147 +1,122 @@
 # Audit 리포트 예시
 
-가상의 프로젝트 "TaskFlow"에 대한 Audit 리포트 예시.
-실제 리포트가 어떤 형태로 생성되는지 참고용으로 제공한다.
+실제 프론트엔드 코드베이스에 대한 Audit 리포트 예시.
+점수화, 빠른 개선 항목, 위험 공개, 수행한 검증을 함께 포함한 출력 형태를 보여준다.
 
 ---
 
 # 하니스 진단 리포트
 
-- **진단 대상**: TaskFlow (태스크 관리 웹 앱)
+- **진단 대상**: specific repository
 - **모드**: Audit
-- **날짜**: 2025-01-15
-- **기술 스택**: React 18, TypeScript, Express, PostgreSQL
+- **날짜**: 2026-03-23
+- **기술 스택**: React 19, TypeScript 5, Vite 8, pnpm 10, MUI 7, TanStack Query/Form, Vitest, Playwright
 - **진단 범위**: 코드베이스
+
+---
+
+## 요약
+
+강점은 진입점 문서, 레이어 경계, 레포 내부 지식화다. 약점은 운영 자동화와 self-documenting 밀도이며, 특히 루트 `AGENTS.md`가 스스로 선언한 "포인터 중심" 원칙보다 상세 규칙을 많이 품고 있어 문서 drift 리스크가 있다.
 
 ---
 
 ## 1. 종합 평가
 
-**종합 등급: L3 (Structured) / 종합 점수: 58/100**
-
-프로젝트의 기본 구조는 잘 갖추어져 있으나, 문서와 코드 간의 정합성, 자동화된 검증 체계에 개선 여지가 크다.
+**종합 등급: L4 / 종합 점수: 77.3/100**
 
 ---
 
 ## 2. 차원별 점수
 
-| 차원 | 포함 원칙 | 점수 | 가중치 | 기여도 |
-|------|-----------|------|--------|--------|
-| A. Documentation & Navigation | P1,P2,P5,P12 | 6.3/10 | 0.30 | 18.8 |
-| B. Enforcement & Consistency | P3,P4,P10 | 5.0/10 | 0.30 | 15.0 |
-| C. Architecture & Knowledge | P6,P9,P11 | 6.0/10 | 0.20 | 12.0 |
-| D. Operations & Maintenance | P7,P8 | 6.0/10 | 0.20 | 12.0 |
-
-**종합 = 18.8 + 15.0 + 12.0 + 12.0 = 57.8 → 반올림 58**
+| 차원                          | 포함 원칙    | 점수 | 가중치 | 기여도 |
+| ----------------------------- | ------------ | ---: | -----: | -----: |
+| A. Documentation & Navigation | P1,P2,P5,P12 |  8.0 |   0.30 |   2.40 |
+| B. Enforcement & Consistency  | P3,P4,P10    |  7.7 |   0.30 |   2.30 |
+| C. Architecture & Knowledge   | P6,P9,P11    |  8.7 |   0.20 |   1.73 |
+| D. Operations & Maintenance   | P7,P8        |  6.5 |   0.20 |   1.30 |
 
 ---
 
 ## 3. 12원칙 상세
 
-| # | 원칙 | 점수 | 근거 요약 |
-|---|------|------|-----------|
-| 1 | Agent Entry Point | 5/10 | README 존재하나 AGENTS.md 없음 |
-| 2 | 구조화된 문서 | 7/10 | docs/ 존재, API 문서 양호 |
-| 3 | Invariant 강제 | 4/10 | ESLint 존재하나 CI에서 미실행 |
-| 4 | 자동화된 검증 | 5/10 | 테스트 존재하나 커버리지 40% |
-| 5 | 탐색 가능한 구조 | 7/10 | 디렉토리 구조 명확, 네이밍 일관 |
-| 6 | 아키텍처 결정 기록 | 5/10 | ADR 디렉토리 존재하나 3개월간 미갱신 |
-| 7 | Garbage Collection | 6/10 | 미사용 코드 일부 잔존 |
-| 8 | Observability | 6/10 | 로깅 존재, 구조화 로그는 미적용 |
-| 9 | 코드 의존성 가독성 | 7/10 | 레이어 분리 양호, 일부 순환 의존 |
-| 10 | 컨벤션 일관성 | 6/10 | 네이밍 대체로 일관, 문서 미비 |
-| 11 | Repository = Source of Truth | 6/10 | 코드 내 지식 관리, 외부 위키 일부 사용 |
-| 12 | 에이전트 가독성 | 6/10 | 파일 크기 적절, 주석 부족 |
-
----
-
-#### 원칙 1: Agent Entry Point
-- **점수**: 5/10
-- **강점**: README.md가 프로젝트 개요와 설치 방법을 포함
-- **약점**: AGENTS.md/CLAUDE.md 없음. README에 에이전트 관련 지시 없음
-- **근거**: `README.md` (82줄), AGENTS.md 미존재
-- **개선 제안**: AGENTS.md 생성. 빌드/테스트 명령어, 디렉토리 구조, 컨벤션 포함
-
-#### 원칙 3: Invariant 강제
-- **점수**: 4/10
-- **강점**: ESLint + Prettier 설정 존재 (`eslintrc.js`, `.prettierrc`)
-- **약점**: CI에서 lint 미실행. pre-commit hook 없음. TypeScript strict mode 미사용
-- **근거**: `.github/workflows/ci.yml` (test만 실행), `tsconfig.json` (strict: false)
-- **개선 제안**: CI에 lint 단계 추가, tsconfig strict 활성화, husky + lint-staged 도입
-
-#### 원칙 4: 자동화된 검증
-- **점수**: 5/10
-- **강점**: Jest 테스트 53개 존재, CI에서 자동 실행
-- **약점**: 테스트 커버리지 40%, E2E 테스트 없음, API 통합 테스트 부족
-- **근거**: `jest.config.js`, `src/__tests__/` (15 파일)
-- **개선 제안**: 커버리지 목표 70% 설정, 핵심 API에 통합 테스트 추가
+| #   | 원칙                          | 점수 | 근거 요약                                                                                       |
+| --- | ----------------------------- | ---: | ----------------------------------------------------------------------------------------------- |
+| P1  | Agent Entry Point             |    9 | 루트/하위 `AGENTS.md`, 명령, 구조, handoff 검증 순서가 명확함                                   |
+| P2  | Map, Not Manual               |    8 | `README` quick links + `docs/index.md` 작업별 탐색 맵이 좋음, 다만 루트 문서 중복이 큼          |
+| P3  | Invariant Enforcement         |    8 | ESLint, Prettier, Husky, Knip, Madge, CI, strict TS가 작동함                                    |
+| P4  | Convention Over Configuration |    8 | 파일명, route, MUI usage, token usage 규칙이 상세히 문서화됨                                    |
+| P5  | Progressive Disclosure        |    8 | `README -> docs/index -> architecture/ADR -> local AGENTS` 흐름이 있음                          |
+| P6  | Layered Architecture          |    9 | `pages/components/features/entities/shared` 경계와 restricted imports가 선명함                  |
+| P7  | Garbage Collection            |    6 | knip과 문서 GC 기준은 있으나 dependency/TODO 관리 자동화는 약함                                 |
+| P8  | Observability                 |    7 | verify, unit test, e2e scaffold는 좋지만 runtime 관측성과 bundle budget은 없음                  |
+| P9  | Knowledge in Repo             |    9 | ADR, roadmap, doc governance, PR template로 배경 지식이 레포 안에 있음                          |
+| P10 | Reproducibility               |    7 | `.nvmrc`, `packageManager`, CI, verify는 좋지만 branch protection/coverage/security 근거는 없음 |
+| P11 | Modularity                    |    8 | 도메인/feature 분리는 좋지만 일부 큰 playground 컴포넌트가 모듈성 한계를 드러냄                 |
+| P12 | Self-Documentation            |    7 | 네이밍/JSDoc은 좋지만 300줄 이상 파일이 7개라 가독성 손실이 있음                                |
 
 ---
 
 ## 4. 체크리스트 결과
 
-| 카테고리 | 전체 | 통과 | 실패 | 통과율 |
-|----------|------|------|------|--------|
-| Agent Entry Point | 15 | 7 | 8 | 47% |
-| 문서 구조 | 12 | 8 | 4 | 67% |
-| Invariant 강제 | 15 | 6 | 9 | 40% |
-| 아키텍처 | 12 | 9 | 3 | 75% |
-| Source of Truth | 10 | 6 | 4 | 60% |
-| 운영/유지보수 | 10 | 7 | 3 | 70% |
-| Agent 가독성 | 10 | 7 | 3 | 70% |
-| **합계** | **84** | **50** | **34** | **60%** |
+| 카테고리          | 전체 | 통과 | 실패 | 통과율 |
+| ----------------- | ---: | ---: | ---: | -----: |
+| Agent Entry Point |   15 |   14 |    1 |    93% |
+| 문서 구조         |   12 |    9 |    3 |    75% |
+| Invariant 강제    |   15 |   11 |    4 |    73% |
+| 아키텍처          |   12 |   10 |    2 |    83% |
+| Source of Truth   |   10 |    9 |    1 |    90% |
+| 운영/유지보수     |   10 |    3 |    7 |    30% |
+| Agent 가독성      |   10 |    5 |    5 |    50% |
 
 ---
 
 ## 5. 빠른 개선 항목
 
-| 순위 | 항목 | 관련 원칙 | 예상 소요 | 예상 점수 향상 |
-|------|------|-----------|-----------|----------------|
-| 1 | AGENTS.md 생성 | P1 | 30분 | +5점 |
-| 2 | CI에 lint 단계 추가 | P3 | 15분 | +3점 |
-| 3 | tsconfig strict 활성화 | P3 | 1시간 | +4점 |
-| 4 | husky + lint-staged 도입 | P3 | 20분 | +2점 |
-| 5 | 테스트 커버리지 리포트 설정 | P4 | 15분 | +2점 |
-
-**빠른 개선 항목 실행 시 예상 점수: 58 → 74점 (L3 → L4 근접)**
+| 순위 | 항목                                                                            | 관련 원칙    | 예상 소요 | 예상 점수 향상 |
+| ---- | ------------------------------------------------------------------------------- | ------------ | --------- | -------------- |
+| 1    | 루트 `AGENTS.md`를 포인터 중심으로 축약하고 `src/features/e2e` 로컬 가이드 추가 | P2,P5,P9,P12 | 0.5-1일   | +3~5           |
+| 2    | CI에 coverage, security audit, bundle size budget 추가                          | P3,P7,P8,P10 | 1-2일     | +4~6           |
+| 3    | `MuiPalettePlayground` 등 대형 컴포넌트 분해                                    | P11,P12      | 1-2일     | +2~4           |
+| 4    | TODO/deprecation/dependency maintenance 자동화 도입                             | P7,P10       | 0.5-1일   | +2~3           |
+| 5    | entity/API contract 레퍼런스 문서 추가                                          | P5,P9,P12    | 0.5-1일   | +2~3           |
 
 ---
 
 ## 6. 개선 로드맵
 
-### 단기 (1-2주)
-
-| 항목 | 관련 원칙 | 예상 효과 |
-|------|-----------|-----------|
-| AGENTS.md 작성 | P1 | 에이전트 진입 효율 대폭 개선 |
-| CI lint/typecheck 추가 | P3 | 코드 품질 자동 보장 |
-| tsconfig strict 활성화 + 타입 오류 수정 | P3 | 타입 안전성 확보 |
-
-### 중기 (1-2개월)
-
-| 항목 | 관련 원칙 | 예상 효과 | 선행 조건 |
-|------|-----------|-----------|-----------|
-| 테스트 커버리지 70% 달성 | P4 | 변경 안전성 확보 | CI 설정 완료 |
-| ADR 갱신 및 프로세스 정립 | P6 | 설계 이유 추적 가능 | - |
-| docs/ 구조 체계화 | P2 | 문서 탐색 효율 향상 | AGENTS.md 완료 |
-
-### 장기 (3개월+)
-
-| 항목 | 관련 원칙 | 예상 효과 | 선행 조건 |
-|------|-----------|-----------|-----------|
-| 구조화 로깅 도입 | P8 | 디버깅 효율 향상 | - |
-| E2E 테스트 도입 | P4 | 사용자 시나리오 검증 | 커버리지 기반 확보 |
-| 순환 의존성 제거 | P9 | 모듈 독립성 확보 | 아키텍처 리뷰 |
-
-**다음 Audit 목표: L4 (Optimized), 75점 이상**
+- 단기 (1-2주): 문서 source-of-truth 정리, 로컬 AGENTS 보강, coverage/security/bundle budget 추가.
+- 중기 (1-2개월): 대형 playground 컴포넌트 분해, feature/entity public API 정리, TODO/deprecation 관리 규칙 자동화.
+- 장기 (3개월+): runtime observability, release note/changelog 운영, 배포 후 health/perf 모니터링 체계 도입.
 
 ---
 
-## 부록: 자체 점검
+## 근거
 
-이 진단 리포트 자체의 품질:
-- [x] 모든 원칙에 대해 근거가 제시되었는가?
-- [x] 점수가 일관된 기준으로 부여되었는가?
-- [x] 제안 사항이 구체적이고 실행 가능한가?
-- [x] 우선순위가 명확한가?
-- [x] 리포트가 읽기 쉬운가?
+- 진입점과 전역 규칙: `AGENTS.md:25`, `AGENTS.md:68`, `AGENTS.md:119`
+- 탐색 맵과 progressive disclosure: `README.md:5`, `docs/index.md:5`, `docs/index.md:20`
+- 문서 source-of-truth 규칙과 현재 drift 포인트: `docs/doc-governance.md:8`, `docs/doc-governance.md:23`, `docs/doc-governance.md:60`
+- 레이어 구조와 라우터 단일 브랜치: `docs/architecture.md:5`, `src/app/router.tsx:112`, `src/app/router.tsx:173`
+- 강제 규칙: `eslint.config.js:121`, `package.json:9`, `.github/workflows/ci.yml:1`, `.husky/pre-commit`, `commitlint.config.cjs:1`
+- self-documenting 샘플과 한계: `src/shared/hooks/useLocaleRouting.ts:11`, `src/pages/vouchers/[voucherId]/index.tsx:6`, `src/components/playground/mui/MuiPalettePlayground.tsx:45`
+
+---
+
+## 위험 요소
+
+- 현재 워크트리는 dirty 상태였습니다: `M docs/index.md`, `?? docs/attachment-composer-plan.md`. 이 리포트는 clean checkout이 아니라 현재 작업중 상태를 기준으로 작성했습니다.
+- `pnpm verify` 최종 통과 후에도 build 단계에서 500kB 초과 chunk 경고가 남았습니다. 품질 게이트에는 없지만 장기적으로는 P8/P11 리스크입니다.
+- branch protection, coverage threshold, security/dependency automation은 레포 내부 근거가 없어 보수적으로 감점했습니다.
+
+---
+
+## 수행한 검증
+
+- `git log --oneline --decorate -n 12`
+- `pnpm lint:deadcode` 통과
+- `pnpm format:check` 통과
+- `pnpm lint` 통과
+- `pnpm verify` 통과
+- `vitest`: 29 files, 103 tests passed
+- `vite build`: 성공, chunk size warning 존재
+- `pnpm test:e2e`는 실행하지 않았습니다.
