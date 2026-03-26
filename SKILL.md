@@ -3,7 +3,7 @@ name: harness-diagnostics
 description: |
   코드베이스와 Codex skill의 에이전트 친화도(harness)를 12개 원칙으로 진단하고 개선안을 제안합니다.
   사용 상황: 신규 환경 구축(Setup), 현 상태 점검(Audit), drift 정리(Maintenance), skill 품질 검사(Self).
-version: 2.1.0
+version: 2.1.1
 ---
 
 # 하니스 진단

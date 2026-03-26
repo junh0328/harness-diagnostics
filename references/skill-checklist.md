@@ -99,7 +99,7 @@
 ## 메타: harness-diagnostics 자체 진단
 
 이 체크리스트를 `harness-diagnostics` skill에 적용한 결과.
-진단 시점: v2.1.0
+진단 시점: v2.1.1
 
 ### 결과 요약
 
