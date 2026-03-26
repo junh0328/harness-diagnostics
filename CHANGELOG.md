@@ -2,6 +2,21 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [2.0.0] - 2026-03-26
+
+### 추가됨
+
+- `references/fix-catalog.md` — 12원칙 × 점수 구간별 구체적 개선 액션 카탈로그 (Auto/Semi/Manual 분류)
+- `references/contract-template.md` — Remediate 모드의 Sprint Contract 형식, 협상 프로토콜, Loop State JSON 스키마
+- `references/remediate-workflow.md` — Audit→Fix→Re-Audit closed feedback loop 워크플로우 (5-Phase)
+
+### 변경됨
+
+- `SKILL.md`에 **Remediate** 모드 추가 (트리거: "개선", "자동 수정", "loop")
+- `SKILL.md` 참조 테이블에 fix-catalog, contract-template, remediate-workflow 추가
+- Read-only 원칙의 명시적 예외 규칙 추가 (Remediate 모드는 사용자 동의 후 파일 수정)
+- `SKILL.md` version을 `2.0.0`으로 업데이트
+
 ## [1.9.5] - 2026-03-26
 
 ### 추가됨

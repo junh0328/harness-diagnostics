@@ -31,6 +31,9 @@
   현재 상태를 12개 원칙 기준으로 점수화하고 개선 로드맵을 제안합니다.
 - `Maintenance`
   drift, stale 문서, 정리 대상 등을 점검합니다.
+- `Remediate`
+  Audit 결과를 기반으로 자동 개선 → 재진단을 반복하는 closed feedback loop입니다.
+  사용자와 목표 점수/범위를 합의(Sprint Contract)한 후에만 파일을 수정합니다.
 - `Self`
   이 스킬 자체를 같은 기준으로 다시 진단합니다.
 
