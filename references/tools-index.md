@@ -15,6 +15,8 @@
 | `scripts/doc-lint.sh` | 문서/포인터/링크 유효성 검증 |
 | `scripts/maintenance-scan.sh` | 고아 파일 탐지, sync manifest 검증 |
 | `scripts/adversarial-verify.sh` | 반증 관점 체크리스트 재검증 (Bias Delta 산출) |
+| `scripts/semantic-verify.sh` | 문서 내 명령어 실행 가능성 검증 |
+| `scripts/behavioral-verify.sh` | 에이전트 첫 접촉 시뮬레이션 (P1, P3, P10) |
 
 ## 점수 계산
 

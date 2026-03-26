@@ -38,6 +38,22 @@ else
   EXIT_CODE=1
 fi
 
+echo "[self-audit] semantic verify"
+if bash "$ROOT_DIR/scripts/semantic-verify.sh"; then
+  echo "  PASS: semantic verify"
+else
+  echo "  FAIL: semantic verify"
+  EXIT_CODE=1
+fi
+
+echo "[self-audit] behavioral verify"
+if bash "$ROOT_DIR/scripts/behavioral-verify.sh"; then
+  echo "  PASS: behavioral verify"
+else
+  echo "  FAIL: behavioral verify"
+  EXIT_CODE=1
+fi
+
 if [ "$EXIT_CODE" -eq 0 ]; then
   echo "[result] PASS"
 else

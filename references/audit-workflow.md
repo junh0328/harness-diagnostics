@@ -54,6 +54,40 @@
 
 ---
 
+## Phase 2.5: 행동 검증
+
+> Deep 프로필에서 필수, Standard에서 권장, Quick에서 생략.
+> 정적 구조 검증을 넘어 에이전트가 실제로 문서를 따라 작업할 수 있는지 기능 검증한다.
+
+### Semantic Command Verification
+
+- `scripts/semantic-verify.sh` 실행
+- 에이전트 지시 문서(AGENTS.md, CLAUDE.md, README.md)의 코드 블록에서 명령어 추출
+- 각 명령어의 실행 가능 여부 판정: `runnable` / `missing` / `ambiguous`
+- Missing이 1건 이상이면 P10 점수 감점
+
+### Agent Walkthrough Simulation
+
+- `scripts/behavioral-verify.sh` 실행
+- 에이전트의 "첫 접촉" 시나리오 시뮬레이션:
+  1. Entry point 파일 탐색 (AGENTS.md → CLAUDE.md → README.md 순)
+  2. 핵심 키워드 존재 확인 (빌드/테스트/구조)
+  3. 명령 추출 및 실행 가능 여부 확인
+  4. Linter/Formatter/CI 설정 존재 확인
+
+### 점수 반영
+
+| 검증 | 반영 원칙 | 반영 방법 |
+|------|-----------|-----------|
+| Semantic Verify — Missing 0건 | P10 | +1점 가산 |
+| Semantic Verify — Missing 1건+ | P10 | -2점 감점 |
+| Behavioral — Entry point 발견 | P1 | 필수 조건 충족 |
+| Behavioral — 핵심 키워드 존재 | P1 | +1점/키워드 |
+| Behavioral — Lint/CI 존재 | P3 | +1점/항목 |
+| Behavioral — 전체 PASS | P1, P3, P10 | L5 전환 필수 조건 |
+
+---
+
 ## Phase 3: 체크리스트 실행
 
 대상에 맞는 체크리스트를 실행한다.
