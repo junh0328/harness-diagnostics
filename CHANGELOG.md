@@ -2,6 +2,16 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [2.1.1] - 2026-03-26
+
+### 변경됨
+
+- `references/audit-workflow.md`의 Skill 체크리스트 항목 수 drift를 `40항목 -> 51항목`으로 수정
+- `scripts/update-self-meta.sh`가 adversarial verify 결과(`Score`, `Confidence`, `Bias Delta`)까지 `references/skill-checklist.md` 메타에 동기화하도록 확장
+- `references/skill-checklist.md`의 Adversarial Verification 메타를 현재 검증 결과(`13/13`, `Bias Delta 0`)와 일치하도록 갱신
+- `examples/sample-report.md`를 최신 Audit 출력 형식과 실제 평가 밀도에 맞춰 전면 갱신
+- `SKILL.md` version을 `2.1.1`으로 업데이트
+
 ## [2.1.0] - 2026-03-26
 
 ### 추가됨

@@ -99,7 +99,7 @@
 ## 메타: harness-diagnostics 자체 진단
 
 이 체크리스트를 `harness-diagnostics` skill에 적용한 결과.
-진단 시점: v2.1.0
+진단 시점: v2.1.1
 
 ### 결과 요약
 
@@ -121,8 +121,8 @@
 `scripts/adversarial-verify.sh`로 반증 관점 재검증한 결과.
 
 - **Score**: 13/13
-- **Confidence**: 12/13
-- **Bias Delta**: 1 (낮을수록 좋음)
+- **Confidence**: 13/13
+- **Bias Delta**: 0 (낮을수록 좋음)
 
 Bias Delta = Score - Confidence. 5 이상이면 긍정 편향 의심.
 

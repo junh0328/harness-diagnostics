@@ -2,6 +2,12 @@
 
 | 날짜       | 버전   | 실행 유형  | 트리거                                            | 결과         | 점수 | 등급 | 메모                                                                                                    |
 | ---------- | ------ | ---------- | ------------------------------------------------- | ------------ | ---- | ---- | ------------------------------------------------------------------------------------------------------- |
+| 2026-03-26 | v2.1.1 | script | Release sync to .codex | PASS | - | - | Synchronized to /Users/junhee/.codex/skills/harness-diagnostics |
+| 2026-03-26 | v2.1.1 | script | Release sync to .codex | FAIL | - | - | Sync failed before completion |
+| 2026-03-26 | v2.1.1 | skill-self | 직접 Self 실행 | PASS | 87.4 | L5 | 2.1.1 release prep: bump version, changelog, and checklist meta |
+| 2026-03-26 | v2.1.0 | skill-self | 직접 Self 실행 | PASS | 87.4 | L5 | 2.1.0: include refreshed audit sample report and related sync log |
+| 2026-03-26 | v2.1.0 | skill-self | 직접 Self 실행 | PASS | 87.4 | L5 | 2.1.0: fix audit checklist count drift and sync adversarial meta summary |
+| 2026-03-26 | v2.1.0 | script | Release sync to .codex | PASS | - | - | Synchronized to /Users/junhee/.claude/skills/harness-diagnostics |
 | 2026-03-26 | v2.0.0 | script     | Release sync to .codex                            | PASS         | -    | -    | Synchronized to /Users/junhee/.claude/skills/harness-diagnostics                                        |
 | 2026-03-26 | v2.0.0 | script     | Release sync to .codex                            | PASS         | -    | -    | Synchronized to /Users/junhee/.codex/skills/harness-diagnostics                                         |
 | 2026-03-23 | v1.8.0 | skill-self | Self guardrail refresh                            | PASS         | 87.3 | L5   | 1.8.0: Node 20 runtime pin과 local pre-commit guardrail 추가, release-sync 및 .codex self-audit 통과    |

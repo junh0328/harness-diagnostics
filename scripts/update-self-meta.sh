@@ -4,9 +4,13 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SKILL_FILE="$ROOT_DIR/SKILL.md"
 CHECKLIST_FILE="$ROOT_DIR/references/skill-checklist.md"
+ADVERSARIAL_OUTPUT="$(bash "$ROOT_DIR/scripts/adversarial-verify.sh")"
 
 VERSION="$(awk '/^version:/ {print $2; exit}' "$SKILL_FILE")"
 LINE_COUNT="$(wc -l < "$SKILL_FILE" | tr -d ' ')"
+ADVERSARIAL_SCORE="$(printf '%s\n' "$ADVERSARIAL_OUTPUT" | awk -F': ' '/Score/ {print $2; exit}')"
+ADVERSARIAL_CONFIDENCE="$(printf '%s\n' "$ADVERSARIAL_OUTPUT" | awk -F': ' '/Confidence/ {print $2; exit}')"
+ADVERSARIAL_BIAS_DELTA="$(printf '%s\n' "$ADVERSARIAL_OUTPUT" | awk -F': ' '/Bias Delta/ {print $2; exit}' | sed 's/ .*//')"
 
 if [ "$LINE_COUNT" -le 120 ]; then
   SKILL_NOTE="120줄 기준 충족"
@@ -14,12 +18,21 @@ else
   SKILL_NOTE="라인 수 초과: ${LINE_COUNT}줄"
 fi
 
-VERSION="$VERSION" SKILL_NOTE="$SKILL_NOTE" CHECKLIST_FILE="$CHECKLIST_FILE" node <<'EOF'
+VERSION="$VERSION" \
+SKILL_NOTE="$SKILL_NOTE" \
+CHECKLIST_FILE="$CHECKLIST_FILE" \
+ADVERSARIAL_SCORE="$ADVERSARIAL_SCORE" \
+ADVERSARIAL_CONFIDENCE="$ADVERSARIAL_CONFIDENCE" \
+ADVERSARIAL_BIAS_DELTA="$ADVERSARIAL_BIAS_DELTA" \
+node <<'EOF'
 const fs = require("fs");
 
 const file = process.env.CHECKLIST_FILE;
 const version = process.env.VERSION;
 const skillNote = process.env.SKILL_NOTE;
+const adversarialScore = process.env.ADVERSARIAL_SCORE;
+const adversarialConfidence = process.env.ADVERSARIAL_CONFIDENCE;
+const adversarialBiasDelta = process.env.ADVERSARIAL_BIAS_DELTA;
 
 let text = fs.readFileSync(file, "utf8");
 const metaStart = text.indexOf("## 메타:");
@@ -55,9 +68,13 @@ summaryRows.forEach((label, index) => {
   });
 });
 text = text.replace(/\*\*총점\*\*: \d+\/\d+ \(100%\)/g, `**총점**: ${totalItems}/${totalItems} (100%)`);
+text = text.replace(/- \*\*Score\*\*: .+/g, `- **Score**: ${adversarialScore}`);
+text = text.replace(/- \*\*Confidence\*\*: .+/g, `- **Confidence**: ${adversarialConfidence}`);
+text = text.replace(/- \*\*Bias Delta\*\*: .+/g, `- **Bias Delta**: ${adversarialBiasDelta} (낮을수록 좋음)`);
 text = text.replace(/전체 skill-checklist 자기 적용 \(\d+항목\)/g, `전체 skill-checklist 자기 적용 (${totalItems}항목)`);
 fs.writeFileSync(file, text);
 EOF
 
 echo "[update-self-meta] version: $VERSION"
 echo "[update-self-meta] skill note: $SKILL_NOTE"
+echo "[update-self-meta] adversarial score: $ADVERSARIAL_SCORE"
