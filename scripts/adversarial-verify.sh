@@ -4,6 +4,15 @@ set -euo pipefail
 # adversarial-verify.sh — 반증(disprove) 관점에서 체크리스트를 재검증한다.
 # 각 항목을 "통과했다"가 아니라 "실패 증거가 있는가?"로 접근한다.
 # 결과: Score, Confidence, Bias Delta 지표 출력.
+#
+# 왜 이 스크립트가 필요한가:
+#   self-audit.sh는 "있어야 할 것이 있는지" 확인하는 긍정 검증이다.
+#   이 스크립트는 반대로 "없어야 할 것이 있는지" 확인하는 부정 검증이다.
+#   둘을 교차하면 자기 평가의 긍정 편향(confirmation bias)을 보정할 수 있다.
+#
+# Bias Delta 지표:
+#   Score(통과 수) - Confidence(높은 신뢰도 통과 수).
+#   5 이상이면 "통과했지만 근거가 약한" 항목이 많아 긍정 편향 의심.
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SKILL_FILE="$ROOT_DIR/SKILL.md"
@@ -14,6 +23,10 @@ FAIL=0
 LOW_CONFIDENCE=0
 TOTAL=0
 
+# check() — 개별 검증 항목을 기록하고 집계하는 유틸리티.
+# 왜 confidence를 분리하는가:
+#   PASS이지만 반증 근거가 약한 항목(low confidence)을 구분하여,
+#   Bias Delta 계산 시 "겉으로만 통과한 항목"을 식별한다.
 check() {
   local id="$1"
   local description="$2"
@@ -40,6 +53,9 @@ check() {
 echo "[adversarial-verify] target: $ROOT_DIR"
 
 # --- 1. 파일 구조 반증 ---
+# 왜 파일 구조를 반증하는가:
+#   self-audit-structure.sh가 "필수 파일이 존재하는지" 확인하는 반면,
+#   여기서는 "있으면 안 되는 것이 있는지"(중복 SKILL, non-kebab, 임시파일, 깊은 중첩)를 탐지한다.
 echo "[adversarial] 1. 파일 구조"
 
 # 1-1: SKILL.md 유일 진입점 — 다른 SKILL 파일이 없어야 함
@@ -78,6 +94,9 @@ else
 fi
 
 # --- 2. SKILL.md 품질 반증 ---
+# 왜 Map vs Manual을 검사하는가:
+#   SKILL.md가 짧더라도 내부에 장문 산문이 있으면 에이전트가 핵심 정보를 추출하기 어렵다.
+#   5줄 이상 연속 산문을 Manual 경향의 지표로 삼는다.
 echo "[adversarial] 2. SKILL.md 품질"
 
 # 2-1: Map vs Manual — SKILL.md에 상세 설명(5줄 이상 연속 산문)이 있으면 Manual 의심
@@ -157,6 +176,9 @@ else
 fi
 
 # --- 6. References 반증 ---
+# 왜 순환 의존성을 탐지하는가:
+#   A→B→A 순환 참조가 있으면 에이전트가 무한 탐색에 빠질 수 있다.
+#   2건 이하는 허용하되(상호 보완적 참조), 그 이상은 구조 문제로 판단한다.
 echo "[adversarial] 6. References"
 
 # 6-4: 순환 의존성 탐지 — 단순 교차 참조 패턴
@@ -231,6 +253,10 @@ else
 fi
 
 # --- 결과 요약 ---
+# 왜 3단계 임계값(5, 3)인가:
+#   Bias Delta >= 5: 통과 항목의 1/3 이상이 low confidence — 점수 신뢰 불가.
+#   Bias Delta >= 3: 주의 수준. 해당 항목을 수동으로 재검토 권장.
+#   Bias Delta < 3: 양호. 대부분의 통과가 높은 근거를 동반.
 echo ""
 echo "============================================"
 echo "[adversarial-verify] 결과 요약"
