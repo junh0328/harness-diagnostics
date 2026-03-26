@@ -2,6 +2,24 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [1.9.0] - 2026-03-26
+
+### 추가됨
+
+- `scripts/adversarial-verify.sh` — 반증(disprove) 관점에서 체크리스트를 재검증하고 Bias Delta 지표를 산출하는 스크립트 추가
+- `references/depth-profiles.md` — Quick/Standard/Deep 3단계 진단 깊이 프로필 정의
+- `references/tools-index.md` — SKILL.md에서 분리한 전체 자동화 도구 목록
+
+### 변경됨
+
+- `SKILL.md`의 도구 목록을 `references/tools-index.md`로 분리하여 113줄로 경량화, 모드 테이블에 깊이(Depth) 컬럼 추가
+- `references/skill-checklist.md` Meta에 Confidence/Bias Delta 지표와 Adversarial Verification 섹션 추가
+- `references/report-template.md` Audit 리포트에 신뢰도 분석 섹션(4번) 추가, 기존 섹션 번호 조정
+- `scripts/self-audit.sh`에 adversarial-verify 단계 통합
+- `scripts/self-audit-runtime.sh` audit example 검증에서 번호 접두사 제거하여 섹션 번호 변경에 강건하게 수정
+- `scripts/maintenance-scan.sh`가 `references/tools-index.md`를 스크립트 참조 소스로 함께 사용하도록 확장
+- `SKILL.md` version을 `1.9.0`으로 업데이트
+
 ## [1.8.0] - 2026-03-23
 
 ### 추가됨

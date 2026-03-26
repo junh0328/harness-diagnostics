@@ -34,6 +34,16 @@
 - `Self`
   이 스킬 자체를 같은 기준으로 다시 진단합니다.
 
+### 진단 깊이
+
+Audit 모드는 3단계 깊이 프로필을 지원합니다.
+
+- `Quick` — 핵심 3원칙(P1, P3, P10)만 빠르게 점검
+- `Standard` — 12원칙 전체 + 체크리스트 (기본값)
+- `Deep` — Standard + adversarial verification + 확장 코드 샘플링
+
+상세는 [references/depth-profiles.md](./references/depth-profiles.md)를 참조합니다.
+
 ## 레포 구조
 
 - `SKILL.md`
@@ -88,6 +98,7 @@ Codex에서 이 스킬을 사용할 때는 `SKILL.md`를 기준으로 모드를 
 bash scripts/check-node-version.sh
 bash scripts/self-audit.sh
 bash scripts/maintenance-scan.sh
+bash scripts/adversarial-verify.sh
 node scripts/calculate-score.js references/score-template.json
 ```
 

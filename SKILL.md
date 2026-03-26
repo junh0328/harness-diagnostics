@@ -3,7 +3,7 @@ name: harness-diagnostics
 description: |
   코드베이스와 Codex skill의 에이전트 친화도(harness)를 12개 원칙으로 진단하고 개선안을 제안합니다.
   사용 상황: 신규 환경 구축(Setup), 현 상태 점검(Audit), drift 정리(Maintenance), skill 품질 검사(Self).
-version: 1.8.0
+version: 1.9.0
 ---
 
 # 하니스 진단
@@ -17,11 +17,13 @@ version: 1.8.0
 4. **Self-referential**: 이 skill 자체도 동일 기준으로 진단 가능
 ## 모드 선택
 
-| 모드 | 트리거 | 목적 | 워크플로우 |
-|------|--------|------|-----------|
-| **Setup** | 새 프로젝트, "환경 구축" | 초기 harness 구성 제안 | `references/setup-workflow.md` |
-| **Audit** | "진단", "점검" | 점수화 + 개선 로드맵 | `references/audit-workflow.md` |
-| **Maintenance** | "drift", "정리" | 변경 감지 + GC 제안 | `references/maintenance-workflow.md` |
+| 모드 | 트리거 | 목적 | 깊이 | 워크플로우 |
+|------|--------|------|------|-----------|
+| **Setup** | 새 프로젝트, "환경 구축" | 초기 harness 구성 제안 | Standard | `references/setup-workflow.md` |
+| **Audit** | "진단", "점검" | 점수화 + 개선 로드맵 | Quick/Standard/Deep | `references/audit-workflow.md` |
+| **Maintenance** | "drift", "정리" | 변경 감지 + GC 제안 | Standard | `references/maintenance-workflow.md` |
+
+깊이 프로필 상세는 `references/depth-profiles.md`를 참조한다.
 모드가 애매하면 사용자에게 확인한다.
 
 ## 권장 사용 흐름
@@ -78,21 +80,12 @@ P6 Layered, P7 Garbage Collection, P8 Observability, P9 Knowledge, P10 Reproduci
 
 ## 자동화 도구
 
-- Self 진단 오케스트레이터: `scripts/self-audit.sh`
-- Runtime 버전 검사: `scripts/check-node-version.sh`
-- 구조 검증: `scripts/self-audit-structure.sh`
-- 런타임 검증: `scripts/self-audit-runtime.sh`
-- 문서/포인터 lint: `scripts/doc-lint.sh`
-- 로컬 Git hook 설치: `scripts/install-hooks.sh`
-- Maintenance/GC 스캔: `scripts/maintenance-scan.sh`
-- Self Meta 동기화: `scripts/update-self-meta.sh`
-- Self Audit 로그 기록: `scripts/append-self-audit-log.sh`
-- Skill Self 실행 요약 기록: `scripts/log-skill-self.sh`
-- 점수 계산 스크립트: `scripts/calculate-score.js`
-- `.codex` 동기화 릴리즈: `scripts/release-sync.sh`
-- 점수 계산 MD 템플릿: `references/score-template.md`
-- 점수 계산 JSON 템플릿: `references/score-template.json`
-- 분기 점검 로그: `logs/self-audit-log.md`
+전체 스크립트/템플릿 목록은 `references/tools-index.md`를 참조한다.
+
+핵심 검증 명령:
+- `bash scripts/self-audit.sh` — 구조 + 런타임 통합 검증
+- `bash scripts/adversarial-verify.sh` — 반증 기반 신뢰도 검증
+- `node scripts/calculate-score.js references/score-template.json` — 점수 계산
 
 ## 참조 문서
 
