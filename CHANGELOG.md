@@ -2,6 +2,20 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [1.9.5] - 2026-03-26
+
+### 추가됨
+
+- `scripts/semantic-verify.sh` — 에이전트 지시 문서의 코드 블록에서 명령어를 추출하고 실행 가능 여부를 검증하는 스크립트 추가
+- `scripts/behavioral-verify.sh` — 에이전트 첫 접촉 시나리오를 시뮬레이션하여 Entry Point, Invariant, Reproducibility를 행동으로 검증하는 스크립트 추가
+
+### 변경됨
+
+- `references/audit-workflow.md`에 Phase 2.5(행동 검증) 추가 — semantic-verify + behavioral-verify 결과를 P1, P3, P10 점수에 반영
+- `references/maturity-framework.md` L4→L5 전환 조건에 semantic-verify/behavioral-verify PASS 필수화
+- `scripts/self-audit.sh`에 semantic-verify, behavioral-verify 단계 통합
+- `SKILL.md` version을 `1.9.5`로 업데이트
+
 ## [1.9.0] - 2026-03-26
 
 ### 추가됨

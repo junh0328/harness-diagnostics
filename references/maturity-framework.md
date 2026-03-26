@@ -216,6 +216,11 @@ DimD = (8 + 5) / 2 = 6.5
 - [ ] 완전한 모듈 독립성
 - [ ] 완전 자동화 환경 프로비저닝
 - [ ] 모든 차원 점수 최소 7.0 이상
+- [ ] `scripts/semantic-verify.sh` PASS (Missing 0건)
+- [ ] `scripts/behavioral-verify.sh` PASS (전체 통과)
+
+> 행동 검증 실패 시 종합 점수와 무관하게 L5 불가.
+> 에이전트가 문서를 따라 실제 작업을 시작할 수 없다면 "Autonomous" 등급에 해당하지 않는다.
 
 ---
 

@@ -99,6 +99,8 @@ bash scripts/check-node-version.sh
 bash scripts/self-audit.sh
 bash scripts/maintenance-scan.sh
 bash scripts/adversarial-verify.sh
+bash scripts/semantic-verify.sh
+bash scripts/behavioral-verify.sh
 node scripts/calculate-score.js references/score-template.json
 ```
 
