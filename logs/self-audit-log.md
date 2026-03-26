@@ -2,6 +2,8 @@
 
 | 날짜       | 버전   | 실행 유형  | 트리거                                            | 결과         | 점수 | 등급 | 메모                                                                                                    |
 | ---------- | ------ | ---------- | ------------------------------------------------- | ------------ | ---- | ---- | ------------------------------------------------------------------------------------------------------- |
+| 2026-03-26 | v2.1.1 | script | Release sync to .codex | PASS | - | - | Synchronized to /Users/junhee/.codex/skills/harness-diagnostics |
+| 2026-03-26 | v2.1.1 | script | Release sync to .codex | FAIL | - | - | Sync failed before completion |
 | 2026-03-26 | v2.1.1 | skill-self | 직접 Self 실행 | PASS | 87.4 | L5 | 2.1.1 release prep: bump version, changelog, and checklist meta |
 | 2026-03-26 | v2.1.0 | skill-self | 직접 Self 실행 | PASS | 87.4 | L5 | 2.1.0: include refreshed audit sample report and related sync log |
 | 2026-03-26 | v2.1.0 | skill-self | 직접 Self 실행 | PASS | 87.4 | L5 | 2.1.0: fix audit checklist count drift and sync adversarial meta summary |
