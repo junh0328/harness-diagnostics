@@ -99,7 +99,7 @@
 
 ### Skill 대상
 
-- `references/skill-checklist.md` 실행 (40항목)
+- `references/skill-checklist.md` 실행 (51항목)
 - 카테고리별 통과율 산출
 
 ### 코드 샘플링 방법

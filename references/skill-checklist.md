@@ -121,8 +121,8 @@
 `scripts/adversarial-verify.sh`로 반증 관점 재검증한 결과.
 
 - **Score**: 13/13
-- **Confidence**: 12/13
-- **Bias Delta**: 1 (낮을수록 좋음)
+- **Confidence**: 13/13
+- **Bias Delta**: 0 (낮을수록 좋음)
 
 Bias Delta = Score - Confidence. 5 이상이면 긍정 편향 의심.
 
