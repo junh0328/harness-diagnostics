@@ -33,7 +33,7 @@ for heading in "## 2. 요구사항 오버레이" "## 6. 목표 AGENTS.md 초안 
 done
 
 echo "[runtime] audit example coverage"
-for section in "요약" "2. 차원별 점수" "5. 빠른 개선 항목" "6. 개선 로드맵" "근거" "위험 요소" "수행한 검증"; do
+for section in "요약" "2. 차원별 점수" "빠른 개선 항목" "개선 로드맵" "근거" "위험 요소" "수행한 검증"; do
   if has_heading "$section" "$ROOT_DIR/references/report-template.md" && has_heading "$section" "$ROOT_DIR/examples/sample-report.md"; then
     echo "  PASS: $section"
   else

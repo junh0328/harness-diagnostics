@@ -30,6 +30,14 @@ else
   EXIT_CODE=1
 fi
 
+echo "[self-audit] adversarial verify"
+if bash "$ROOT_DIR/scripts/adversarial-verify.sh"; then
+  echo "  PASS: adversarial verify"
+else
+  echo "  FAIL: adversarial verify"
+  EXIT_CODE=1
+fi
+
 if [ "$EXIT_CODE" -eq 0 ]; then
   echo "[result] PASS"
 else

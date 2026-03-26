@@ -99,22 +99,32 @@
 ## 메타: harness-diagnostics 자체 진단
 
 이 체크리스트를 `harness-diagnostics` skill에 적용한 결과.
-진단 시점: v1.8.0
+진단 시점: v1.9.0
 
 ### 결과 요약
 
-| 카테고리 | 점수 | 비고 |
-|----------|------|------|
-| 파일 구조 검증 | 8/8 | AGENTS 포함 |
-| SKILL.md 품질 | 6/6 | 120줄 기준 충족 |
-| Frontmatter 품질 | 6/6 | 우수 |
-| 본문 구조 | 6/6 | references 파일 모두 존재 |
-| 출력 형식 정의 | 5/5 | Verification 섹션 포함 |
-| References 품질 | 6/6 | 모든 파일 완성 |
-| 자체 평가 메커니즘 | 7/7 | 구조/런타임 분리 및 self log 운영 |
-| 운영 Guardrail | 7/7 | CI, 템플릿, GC 스캔, 런타임 pin, local hook 포함 |
+| 카테고리 | 점수 | 신뢰도 | 비고 |
+|----------|------|--------|------|
+| 파일 구조 검증 | 8/8 | high | AGENTS 포함 |
+| SKILL.md 품질 | 6/6 | medium | 장문 산문 1건 (low confidence) |
+| Frontmatter 품질 | 6/6 | high | 우수 |
+| 본문 구조 | 6/6 | high | references 파일 모두 존재 |
+| 출력 형식 정의 | 5/5 | high | Verification 섹션 포함 |
+| References 품질 | 6/6 | medium | 교차 참조 1건 (허용 범위) |
+| 자체 평가 메커니즘 | 7/7 | high | 구조/런타임 분리 및 self log 운영 |
+| 운영 Guardrail | 7/7 | high | CI, 템플릿, GC 스캔, 런타임 pin, local hook 포함 |
 
 **총점**: 51/51 (100%)
+
+### Adversarial Verification
+
+`scripts/adversarial-verify.sh`로 반증 관점 재검증한 결과.
+
+- **Score**: 13/13
+- **Confidence**: 12/13
+- **Bias Delta**: 1 (낮을수록 좋음)
+
+Bias Delta = Score - Confidence. 5 이상이면 긍정 편향 의심.
 
 ---
 
