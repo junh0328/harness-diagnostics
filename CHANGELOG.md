@@ -2,6 +2,24 @@
 
 이 문서는 `harness-diagnostics`의 주요 변경 사항을 기록합니다.
 
+## [2.1.0] - 2026-03-26
+
+### 추가됨
+
+- `references/recommended-flow.md` — SKILL.md에서 분리한 권장 사용 흐름 상세 (P2 Map 순도 향상)
+- `references/adr-001-scoring-weights.md` — 차원 가중치 30/30/20/20 결정 근거 ADR
+- `references/adr-002-checklist-item-counts.md` — 체크리스트 항목 수(51/84) 결정 근거 ADR
+- `references/layer-dependency-rules.md` — 레이어 간 의존성 방향 규칙과 오케스트레이터 패턴 정의
+- `scripts/self-audit.sh`에 `--log` 옵션 추가 — 실행 결과를 `logs/self-audit-YYYYMMDD-HHMMSS.log`로 보존
+
+### 변경됨
+
+- `SKILL.md`의 "권장 사용 흐름" 산문(12줄)을 `references/recommended-flow.md`로 분리하여 1줄 포인터로 대체 (118줄 → 107줄)
+- `SKILL.md` 참조 테이블에 recommended-flow, layer-dependency-rules, adr-001, adr-002 추가
+- `scripts/adversarial-verify.sh`에 함수/섹션별 "왜" 주석 6건 추가 (P12 Self-Documentation 향상)
+- adversarial-verify Bias Delta: 1 → 0 (low-confidence 항목 해소)
+- `SKILL.md` version을 `2.1.0`으로 업데이트
+
 ## [2.0.0] - 2026-03-26
 
 ### 추가됨

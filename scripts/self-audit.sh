@@ -4,6 +4,17 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 EXIT_CODE=0
 
+# --log 옵션: 실행 결과를 logs/ 하위에 timestamped 파일로 보존한다.
+# 왜 필요한가: 기본 실행은 stdout만 출력하여 이력이 남지 않는다.
+# 이 옵션으로 과거 실행 결과를 비교하고 회귀를 추적할 수 있다.
+LOG_FILE=""
+if [ "${1:-}" = "--log" ]; then
+  TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+  LOG_FILE="$ROOT_DIR/logs/self-audit-${TIMESTAMP}.log"
+  exec > >(tee "$LOG_FILE") 2>&1
+  echo "[self-audit] logging to: $LOG_FILE"
+fi
+
 echo "[self-audit] target: $ROOT_DIR"
 
 echo "[self-audit] runtime contract"

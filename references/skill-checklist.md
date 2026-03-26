@@ -99,14 +99,14 @@
 ## 메타: harness-diagnostics 자체 진단
 
 이 체크리스트를 `harness-diagnostics` skill에 적용한 결과.
-진단 시점: v2.0.0
+진단 시점: v2.1.0
 
 ### 결과 요약
 
 | 카테고리 | 점수 | 신뢰도 | 비고 |
 |----------|------|--------|------|
 | 파일 구조 검증 | 8/8 | high | AGENTS 포함 |
-| SKILL.md 품질 | 6/6 | medium | 장문 산문 1건 (low confidence) |
+| SKILL.md 품질 | 6/6 | 120줄 기준 충족 | 장문 산문 1건 (low confidence) |
 | Frontmatter 품질 | 6/6 | high | 우수 |
 | 본문 구조 | 6/6 | high | references 파일 모두 존재 |
 | 출력 형식 정의 | 5/5 | high | Verification 섹션 포함 |
