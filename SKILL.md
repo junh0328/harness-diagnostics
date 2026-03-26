@@ -3,7 +3,7 @@ name: harness-diagnostics
 description: |
   코드베이스와 Codex skill의 에이전트 친화도(harness)를 12개 원칙으로 진단하고 개선안을 제안합니다.
   사용 상황: 신규 환경 구축(Setup), 현 상태 점검(Audit), drift 정리(Maintenance), skill 품질 검사(Self).
-version: 1.9.5
+version: 2.0.0
 ---
 
 # 하니스 진단
@@ -22,8 +22,10 @@ version: 1.9.5
 | **Setup** | 새 프로젝트, "환경 구축" | 초기 harness 구성 제안 | Standard | `references/setup-workflow.md` |
 | **Audit** | "진단", "점검" | 점수화 + 개선 로드맵 | Quick/Standard/Deep | `references/audit-workflow.md` |
 | **Maintenance** | "drift", "정리" | 변경 감지 + GC 제안 | Standard | `references/maintenance-workflow.md` |
+| **Remediate** | "개선", "자동 수정", "loop" | Audit→Fix→Re-Audit 루프 | Standard/Deep | `references/remediate-workflow.md` |
 
 깊이 프로필 상세는 `references/depth-profiles.md`를 참조한다.
+Remediate 모드는 read-only 기본 원칙의 예외로, 명시적 사용자 동의 후에만 파일을 수정한다.
 모드가 애매하면 사용자에게 확인한다.
 
 ## 권장 사용 흐름
@@ -100,6 +102,9 @@ P6 Layered, P7 Garbage Collection, P8 Observability, P9 Knowledge, P10 Reproduci
 | `references/maintenance-workflow.md` | Maintenance 워크플로우 |
 | `references/verification-workflow.md` | 검증/로그 운영 워크플로우 |
 | `references/report-template.md` | 리포트 출력 형식 |
+| `references/remediate-workflow.md` | Remediate 워크플로우 |
+| `references/fix-catalog.md` | 원칙별 개선 액션 카탈로그 |
+| `references/contract-template.md` | Sprint Contract 형식 |
 | `references/score-template.md` | 차원/종합 점수 계산 표 |
 | `references/score-template.json` | 자동 계산 입력 스키마 |
 
